@@ -1,10 +1,9 @@
-package io.github.pasinduyy.mortgagecalculator;
+package io.github.pasinduyy;
 
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-public class MortgageCalculator {
-
+public class Main {
     final static byte MONTHS_IN_YEAR = 12;
     final static byte PERCENT = 100;
 
@@ -58,9 +57,9 @@ public class MortgageCalculator {
         short numberOfPayments = (short) (years * MONTHS_IN_YEAR);
         float monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
 
-        double balance = principal * (Math.pow(1 + monthlyInterest, numberOfPayments)
-                - Math.pow(1 + monthlyInterest, noOfPaymentsMade))
-                / (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
+        double balance = principal * (Math.pow(1 + monthlyInterest, numberOfPayments) -
+                Math.pow(1 + monthlyInterest, noOfPaymentsMade)) /
+                (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
 
         return balance;
     }
@@ -69,8 +68,8 @@ public class MortgageCalculator {
         short numberOfPayments = (short) (years * MONTHS_IN_YEAR);
         float monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
 
-        double mortgage = principal * (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments))
-                / (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
+        double mortgage = principal * (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
+                (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
 
         return mortgage;
     }
