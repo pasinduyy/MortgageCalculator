@@ -3,15 +3,17 @@ package io.github.pasinduyy;
 import java.text.NumberFormat;
 
 public class MortgageReport {
+    private final NumberFormat currencyInstance;
     private MortgageCalculator mortgageCalculator;
 
     public MortgageReport(MortgageCalculator mortgageCalculator) {
         this.mortgageCalculator = mortgageCalculator;
+        currencyInstance = NumberFormat.getCurrencyInstance();
     }
 
     public void displayMortgage() {
         double mortgage = mortgageCalculator.calculateMortgage();
-        String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
+        String mortgageFormatted = currencyInstance.format(mortgage);
 
         System.out.println();
         System.out.println("----- MORTGAGE -----");
@@ -22,7 +24,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("----- PAYMENT SCHEDULE -----");
         for (double balance : mortgageCalculator.getRemainingBalances()) {
-            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
+            System.out.println(currencyInstance.format(balance));
         }
     }
 }
