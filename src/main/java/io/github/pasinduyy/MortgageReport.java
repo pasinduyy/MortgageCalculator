@@ -3,8 +3,14 @@ package io.github.pasinduyy;
 import java.text.NumberFormat;
 
 public class MortgageReport {
-    public static void displayMortgage(int principal, float annualInterest, byte years) {
-        double mortgage = Main.calculateMortgage(principal, annualInterest, years);
+    private MortgageCalculator mortgageCalculator;
+
+    public MortgageReport(MortgageCalculator mortgageCalculator) {
+        this.mortgageCalculator = mortgageCalculator;
+    }
+
+    public void displayMortgage() {
+        double mortgage = mortgageCalculator.calculateMortgage();
         String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
 
         System.out.println();
@@ -12,12 +18,12 @@ public class MortgageReport {
         System.out.println("Monthly Payments: " + mortgageFormatted);
     }
 
-    public static void displayPaymentSchedule(int principal, float annualInterest, byte years) {
+    public void displayPaymentSchedule() {
         System.out.println();
         System.out.println("----- PAYMENT SCHEDULE -----");
 
-        for (short month = 1; month <= years * Main.MONTHS_IN_YEAR; month++) {
-            double balance = Main.calculateBalance(principal, annualInterest, years, month);
+        for (short month = 1; month <= mortgageCalculator.getYears() * Main.MONTHS_IN_YEAR; month++) {
+            double balance = mortgageCalculator.calculateBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance().format(balance));
         }
     }
